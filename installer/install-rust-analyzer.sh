@@ -6,20 +6,20 @@ os=$(uname -s | tr "[:upper:]" "[:lower:]")
 
 case $os in
 linux)
-  suffix="linux"
+  platform="linux"
   ;;
 darwin)
-  suffix="mac"
+  platform="mac"
 
-  # Suffix for apple silicon
+  # For apple silicon
   if [[ $(uname -m) == 'arm64' ]]; then
-      suffix="aarch64-apple-darwin"
+      platform="aarch64-apple-darwin"
   fi
   ;;
 esac
 
-curl -L -o "rust-analyzer-$suffix.gz" "https://github.com/rust-analyzer/rust-analyzer/releases/latest/download/rust-analyzer-$suffix.gz"
+curl -L -o "rust-analyzer-$platform.gz" "https://github.com/rust-analyzer/rust-analyzer/releases/latest/download/rust-analyzer-$platform.gz"
 
-gunzip "rust-analyzer-$suffix.gz"
-mv rust-analyzer-$suffix rust-analyzer
+gunzip "rust-analyzer-$platform.gz"
+mv rust-analyzer-$platform rust-analyzer
 chmod +x rust-analyzer
